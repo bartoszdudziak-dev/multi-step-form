@@ -1,23 +1,23 @@
 import styled, { css } from 'styled-components';
-import { CheckboxProps, StyledCheckboxProps } from './type';
+import { RadioProps, StyledRadioProps } from './type';
 
-const ChebkboxCheckmark = styled.span<StyledCheckboxProps>`
+const RadioCheckmark = styled.span<StyledRadioProps>`
     position: absolute;
     top: 0;
     left: 0;
 
-    ${({ theme: { color, borderRadius, checkbox }, $variant }) => {
+    ${({ theme: { color, borderRadius, radio }, $variant }) => {
         const {
             checkmark: { width, height },
             boxShadow: { blur, distance },
-        } = checkbox[$variant];
+        } = radio[$variant];
         const { background, primary, secondary, outline } = color;
 
         return css`
             background-color: ${background};
             width: ${width};
             height: ${height};
-            border-radius: ${borderRadius.checkbox};
+            border-radius: ${borderRadius.full};
             box-shadow:
                 -${distance} -${distance} ${blur} ${secondary},
                 ${distance} ${distance} ${blur} ${primary};
@@ -29,20 +29,20 @@ const ChebkboxCheckmark = styled.span<StyledCheckboxProps>`
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
+                border-radius: inherit;
                 display: block;
                 width: ${width};
-                max-width: 40%;
+                max-width: 35%;
                 height: ${height};
-                max-height: 40%;
+                max-height: 35%;
                 background-color: ${outline};
-                clip-path: polygon(20% 50%, 40% 70%, 80% 20%, 100% 40%, 40% 100%, 0% 60%);
                 transition: all 0.2s ease-out;
             }
         `;
     }}
 `;
 
-const CheckboxInput = styled.input.attrs({ type: 'checkbox' })`
+const RadioInput = styled.input.attrs({ type: 'radio' })`
     -webkit-appearance: none;
     appearance: none;
     position: absolute;
@@ -52,7 +52,7 @@ const CheckboxInput = styled.input.attrs({ type: 'checkbox' })`
     cursor: pointer;
 `;
 
-const CheckboxContainer = styled.label<StyledCheckboxProps>`
+const RadioContainer = styled.label<StyledRadioProps>`
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -62,13 +62,13 @@ const CheckboxContainer = styled.label<StyledCheckboxProps>`
     cursor: pointer;
     transition: all 0.2s ease-out;
 
-    ${({ theme: { color, checkbox }, $variant }) => {
+    ${({ theme: { color, radio }, $variant }) => {
         const {
             fontSize,
             gap,
             boxShadow: { distance, blur },
             checkmark: { width },
-        } = checkbox[$variant];
+        } = radio[$variant];
         const { text, primary, secondary, outline } = color;
 
         return css`
@@ -79,17 +79,17 @@ const CheckboxContainer = styled.label<StyledCheckboxProps>`
             &:hover {
                 color: ${text};
 
-                ${ChebkboxCheckmark} {
+                ${RadioCheckmark} {
                     background-color: ${primary};
                 }
             }
 
-            &:has(${CheckboxInput}:checked) {
+            &:has(${RadioInput}:checked) {
                 color: ${text};
             }
 
-            ${CheckboxInput}:checked, ${CheckboxInput}:active {
-                ~ ${ChebkboxCheckmark} {
+            ${RadioInput}:checked, ${RadioInput}:active {
+                ~ ${RadioCheckmark} {
                     box-shadow:
                         inset ${distance} ${distance} ${blur} ${primary},
                         inset -${distance} -${distance} ${blur} ${secondary},
@@ -97,8 +97,8 @@ const CheckboxContainer = styled.label<StyledCheckboxProps>`
 
                     &::after {
                         background-color: ${text};
-                        max-width: 50%;
-                        max-height: 50%;
+                        max-width: 40%;
+                        max-height: 40%;
                     }
                 }
             }
@@ -106,14 +106,14 @@ const CheckboxContainer = styled.label<StyledCheckboxProps>`
     }}
 `;
 
-const StyledCheckbox = ({ id, label, variant = 'md' }: CheckboxProps) => {
+const StyledRadio = ({ id, label, variant = 'md', name, value }: RadioProps) => {
     return (
-        <CheckboxContainer $variant={variant} htmlFor={id}>
+        <RadioContainer $variant={variant} htmlFor={id}>
             {label}
-            <CheckboxInput id={id} />
-            <ChebkboxCheckmark $variant={variant} />
-        </CheckboxContainer>
+            <RadioInput id={id} name={name} value={value} />
+            <RadioCheckmark $variant={variant} />
+        </RadioContainer>
     );
 };
 
-export { StyledCheckbox };
+export { StyledRadio };

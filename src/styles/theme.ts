@@ -17,7 +17,7 @@ const theme: DefaultTheme = {
         md: '0.5rem',
         lg: '0.6rem',
         full: '50%',
-        checkbox: '2px',
+        checkbox: '4px',
     },
 
     input: {
@@ -59,7 +59,7 @@ const theme: DefaultTheme = {
         md: {
             fontSize: '1.25rem',
             padding: '0.6rem 1.2rem',
-            boxShadow: { distance: '3px', blur: '3px' },
+            boxShadow: { distance: '2px', blur: '2px' },
         },
         lg: {
             fontSize: '1.5rem',
@@ -71,19 +71,40 @@ const theme: DefaultTheme = {
     checkbox: {
         sm: {
             fontSize: '0.875rem',
-            gap: '0.875rem',
+            gap: '0.25rem',
             checkmark: { height: '20px', width: '20px' },
             boxShadow: { distance: '1px', blur: '1px' },
         },
         md: {
             fontSize: '1rem',
-            gap: '1rem',
+            gap: '0.375rem',
             checkmark: { height: '24px', width: '24px' },
             boxShadow: { distance: '2px', blur: '2px' },
         },
         lg: {
             fontSize: '1.125rem',
-            gap: '1.125rem',
+            gap: '0.5rem',
+            checkmark: { height: '28px', width: '28px' },
+            boxShadow: { distance: '3px', blur: '3px' },
+        },
+    },
+
+    radio: {
+        sm: {
+            fontSize: '0.875rem',
+            gap: '0.25rem',
+            checkmark: { height: '20px', width: '20px' },
+            boxShadow: { distance: '1px', blur: '1px' },
+        },
+        md: {
+            fontSize: '1rem',
+            gap: '0.375rem',
+            checkmark: { height: '24px', width: '24px' },
+            boxShadow: { distance: '2px', blur: '2px' },
+        },
+        lg: {
+            fontSize: '1.125rem',
+            gap: '0.5rem',
             checkmark: { height: '28px', width: '28px' },
             boxShadow: { distance: '3px', blur: '3px' },
         },

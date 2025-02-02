@@ -1,8 +1,9 @@
 import Button from './components/Button';
-import Checkbox from './components/Checkbox/Checkbox';
+import Checkbox from './components/Checkbox';
 import Column from './components/Column';
 import Input from './components/Input';
 import Label from './components/Label';
+import Radio from './components/Radio';
 import Row from './components/Row';
 
 function App() {
@@ -41,8 +42,15 @@ function App() {
             </Row>
 
             <Row>
-                <Checkbox id="confrim" label="Confirm" />
-                <Checkbox id="test" />
+                <Checkbox variant="sm" id="confrim1" label="Confirm" />
+                <Checkbox variant="md" id="confirm2" label="Confirm" />
+                <Checkbox variant="lg" id="confirm3" label="Confirm" />
+            </Row>
+
+            <Row>
+                <Radio variant="sm" id="radio1" label="Radio" name="radio" />
+                <Radio variant="md" id="radio2" label="Radio" name="radio" />
+                <Radio variant="lg" id="radio3" label="Radio" />
             </Row>
         </>
     );
