@@ -1,3 +1,4 @@
+import Button from './components/Button';
 import Column from './components/Column';
 import Input from './components/Input';
 import Label from './components/Label';
@@ -21,6 +22,20 @@ function App() {
                 <Column>
                     <Label variant="lg">First Name</Label>
                     <Input variant="lg" />
+                </Column>
+            </Row>
+
+            <Row>
+                <Column>
+                    <Button variant="sm">Click me</Button>
+                </Column>
+                <Column>
+                    <Button>Click me</Button>
+                </Column>
+                <Column>
+                    <Button type="submit" variant="lg">
+                        Click me
+                    </Button>
                 </Column>
             </Row>
         </>

@@ -48,6 +48,24 @@ const theme: DefaultTheme = {
             fontSize: '1.125rem',
         },
     },
+
+    button: {
+        sm: {
+            fontSize: '1rem',
+            padding: '0.5rem 1rem',
+            boxShadow: { distance: '2px', blur: '2px' },
+        },
+        md: {
+            fontSize: '1.25rem',
+            padding: '0.6rem 1.2rem',
+            boxShadow: { distance: '3px', blur: '3px' },
+        },
+        lg: {
+            fontSize: '1.5rem',
+            padding: '0.7rem 1.4rem',
+            boxShadow: { distance: '4px', blur: '4px' },
+        },
+    },
 };
 
 export { theme };

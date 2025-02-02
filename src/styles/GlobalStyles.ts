@@ -16,9 +16,14 @@ const GlobalStyles = styled.createGlobalStyle`
         `}
     }
 
-    input {
+    input,
+    button {
         border: none;
         background-color: inherit;
+    }
+
+    button {
+        cursor: pointer;
     }
 `;
 

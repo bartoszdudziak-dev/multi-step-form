@@ -22,6 +22,7 @@ declare module 'styled-components' {
 
         input: Record<Variant, Input>;
         label: Record<Variant, Label>;
+        button: Record<Variant, Button>;
     }
 
     type BoxShadow = {
@@ -37,6 +38,12 @@ declare module 'styled-components' {
 
     type Label = {
         fontSize: string;
+    };
+
+    type Button = {
+        fontSize: string;
+        padding: string;
+        boxShadow: BoxShadow;
     };
 
     export type Variant = 'sm' | 'md' | 'lg';

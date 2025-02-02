@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
 export type RowProps = {
-    children: ReactNode;
+    children?: ReactNode;
     style?: React.CSSProperties;
 };
