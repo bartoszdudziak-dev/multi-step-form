@@ -17,6 +17,7 @@ const theme: DefaultTheme = {
         md: '0.5rem',
         lg: '0.6rem',
         full: '50%',
+        checkbox: '2px',
     },
 
     input: {
@@ -64,6 +65,27 @@ const theme: DefaultTheme = {
             fontSize: '1.5rem',
             padding: '0.7rem 1.4rem',
             boxShadow: { distance: '4px', blur: '4px' },
+        },
+    },
+
+    checkbox: {
+        sm: {
+            fontSize: '0.875rem',
+            gap: '0.875rem',
+            checkmark: { height: '20px', width: '20px' },
+            boxShadow: { distance: '1px', blur: '1px' },
+        },
+        md: {
+            fontSize: '1rem',
+            gap: '1rem',
+            checkmark: { height: '24px', width: '24px' },
+            boxShadow: { distance: '2px', blur: '2px' },
+        },
+        lg: {
+            fontSize: '1.125rem',
+            gap: '1.125rem',
+            checkmark: { height: '28px', width: '28px' },
+            boxShadow: { distance: '3px', blur: '3px' },
         },
     },
 };

@@ -1,4 +1,5 @@
 import Button from './components/Button';
+import Checkbox from './components/Checkbox/Checkbox';
 import Column from './components/Column';
 import Input from './components/Input';
 import Label from './components/Label';
@@ -8,7 +9,7 @@ function App() {
     return (
         <>
             <h1>Hello Vite!</h1>
-            <Row style={{}}>
+            <Row>
                 <Column>
                     <Label htmlFor="name" variant="sm">
                         First Name
@@ -37,6 +38,11 @@ function App() {
                         Click me
                     </Button>
                 </Column>
+            </Row>
+
+            <Row>
+                <Checkbox id="confrim" label="Confirm" />
+                <Checkbox id="test" />
             </Row>
         </>
     );

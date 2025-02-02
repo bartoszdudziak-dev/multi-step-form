@@ -18,8 +18,8 @@ const StyledButton = styled.button<StyledButtonProps>`
 
         return css`
             box-shadow:
-                -${distance} -${distance} ${blur} ${primary},
-                ${distance} ${distance} ${blur} ${secondary};
+                ${distance} ${distance} ${blur} ${primary},
+                -${distance} -${distance} ${blur} ${secondary};
             font-size: ${fontSize};
             border-radius: ${borderRadius[$variant]};
             padding: ${padding};

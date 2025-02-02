@@ -18,11 +18,13 @@ declare module 'styled-components' {
             md: string;
             lg: string;
             full: string;
+            checkbox: string;
         };
 
         input: Record<Variant, Input>;
         label: Record<Variant, Label>;
         button: Record<Variant, Button>;
+        checkbox: Record<Variant, Checkbox>;
     }
 
     type BoxShadow = {
@@ -43,6 +45,16 @@ declare module 'styled-components' {
     type Button = {
         fontSize: string;
         padding: string;
+        boxShadow: BoxShadow;
+    };
+
+    type Checkbox = {
+        fontSize: string;
+        gap: string;
+        checkmark: {
+            width: string;
+            height: string;
+        };
         boxShadow: BoxShadow;
     };
 
