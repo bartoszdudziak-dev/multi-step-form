@@ -1,34 +1,40 @@
 import styled, { css } from 'styled-components';
-import { InputProps } from './type';
+import { StyledInputProps } from './type';
 
-const StyledInput = styled.input<InputProps>`
+const StyledInput = styled.input<StyledInputProps>`
     ${({
         theme: {
             color: { primary, secondary, outline },
             borderRadius,
             input,
         },
-        size = 'md',
+        $variant,
     }) => {
         const {
             boxShadow: { distance, blur },
             fontSize,
             padding,
-        } = input[size];
+        } = input[$variant];
 
         return css`
             box-shadow:
                 inset ${distance} ${distance} ${blur} ${primary},
                 inset -${distance} -${distance} ${blur} ${secondary};
             font-size: ${fontSize};
-            border-radius: ${borderRadius[size]};
+            border-radius: ${borderRadius[$variant]};
             padding: ${padding};
+            transition: all 0.2s ease-out;
 
             &:focus-within {
                 outline: none;
+                background-color: ${primary};
                 box-shadow:
                     inset ${distance} ${distance} ${blur} ${primary},
                     inset -${distance} -${distance} ${blur} ${outline};
+            }
+
+            &:hover {
+                background-color: ${primary};
             }
         `;
     }}

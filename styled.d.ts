@@ -20,7 +20,8 @@ declare module 'styled-components' {
             full: string;
         };
 
-        input: Record<Size, Input>;
+        input: Record<Variant, Input>;
+        label: Record<Variant, Label>;
     }
 
     type BoxShadow = {
@@ -34,5 +35,9 @@ declare module 'styled-components' {
         boxShadow: BoxShadow;
     };
 
-    export type Size = 'sm' | 'md' | 'lg';
+    type Label = {
+        fontSize: string;
+    };
+
+    export type Variant = 'sm' | 'md' | 'lg';
 }

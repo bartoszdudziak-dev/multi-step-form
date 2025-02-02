@@ -1,5 +1,10 @@
-import { Size } from 'styled-components';
+import { InputHTMLAttributes } from 'react';
+import { Variant } from 'styled-components';
 
 export type InputProps = {
-    size?: Size;
+    variant?: Variant;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+export type StyledInputProps = {
+    $variant: Variant;
 };

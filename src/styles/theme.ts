@@ -7,33 +7,45 @@ const theme: DefaultTheme = {
         primary: '#303030',
         secondary: '#454545',
         background: '#333333',
+        outline: '#787878',
         text: '#e5e5e5',
-        outline: 'rgba(229, 229, 229, 0.3)',
         accent: '#EE6611',
     },
 
     borderRadius: {
-        sm: '0.5rem',
-        md: '0.75rem',
-        lg: '1rem',
+        sm: '0.4rem',
+        md: '0.5rem',
+        lg: '0.6rem',
         full: '50%',
     },
 
     input: {
         sm: {
-            boxShadow: { distance: '3px', blur: '3px' },
+            boxShadow: { distance: '2px', blur: '2px' },
+            fontSize: '0.875rem',
+            padding: '0.4rem 0.8rem',
+        },
+        md: {
+            boxShadow: { distance: '2px', blur: '2px' },
             fontSize: '1rem',
             padding: '0.5rem 1rem',
         },
+        lg: {
+            boxShadow: { distance: '2px', blur: '2px' },
+            fontSize: '1.125rem',
+            padding: '0.6rem 1.2rem',
+        },
+    },
+
+    label: {
+        sm: {
+            fontSize: '0.875rem',
+        },
         md: {
-            boxShadow: { distance: '4px', blur: '4px' },
-            fontSize: '1.25rem',
-            padding: '0.75rem 1.25rem',
+            fontSize: '1rem',
         },
         lg: {
-            boxShadow: { distance: '5px', blur: '5px' },
-            fontSize: '1.5rem',
-            padding: '1rem 1.5rem',
+            fontSize: '1.125rem',
         },
     },
 };
