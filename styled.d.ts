@@ -26,6 +26,7 @@ declare module 'styled-components' {
         button: Record<Variant, Button>;
         checkbox: Record<Variant, Checkbox>;
         radio: Record<Variant, Radio>;
+        card: Record<Variant, Card>;
     }
 
     type BoxShadow = {
@@ -61,6 +62,9 @@ declare module 'styled-components' {
 
     type Radio = Checkbox;
 
+    type Card = {
+        boxShadow: BoxShadow;
+    };
 
     export type Variant = 'sm' | 'md' | 'lg';
 }

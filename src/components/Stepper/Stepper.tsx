@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Progress, ProgressBar, StyledStep, StyledStepper } from './Stepper.styled';
 import { StepperProps, StepProps } from './type';
 
@@ -10,8 +11,11 @@ function Step({ value, isDone, isActive }: StepProps) {
 }
 
 function Stepper({ currentStep, maxSteps }: StepperProps) {
-    const calcualteProgress = () => ((currentStep - 1) / (maxSteps - 1)) * 100 + '%';
-    console.log(calcualteProgress());
+    const calcualteProgress = useCallback(() => {
+        const width = ((currentStep - 1) / (maxSteps - 1)) * 100 + '%';
+        return width;
+    }, [currentStep, maxSteps]);
+
     return (
         <StyledStepper>
             {Array.from({ length: maxSteps }).map((_, i) => (

@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
-    fontFamily: 'Cursive, system-ui, Verdana, Arial, sans-serif',
+    fontFamily: 'Monospace, Cursive, system-ui, Verdana, Arial, sans-serif',
 
     color: {
         primary: '#303030',
@@ -107,6 +107,18 @@ const theme: DefaultTheme = {
             gap: '0.5rem',
             checkmark: { height: '28px', width: '28px' },
             boxShadow: { distance: '3px', blur: '3px' },
+        },
+    },
+
+    card: {
+        sm: {
+            boxShadow: { distance: '4px', blur: '4px' },
+        },
+        md: {
+            boxShadow: { distance: '6px', blur: '6px' },
+        },
+        lg: {
+            boxShadow: { distance: '8px', blur: '8px' },
         },
     },
 };
