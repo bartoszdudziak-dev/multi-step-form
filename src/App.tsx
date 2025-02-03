@@ -1,10 +1,22 @@
 import Button from './components/Button';
 import Checkbox from './components/Checkbox';
 import Column from './components/Column';
+import Dropdown from './components/Dropdown';
 import Input from './components/Input';
 import Label from './components/Label';
 import Radio from './components/Radio';
 import Row from './components/Row';
+
+const items = [
+    { name: 'Item 1', value: 1 },
+    { name: 'Item 2', value: 2 },
+    { name: 'Item 3Item 3Item 3', value: 3 },
+    { name: 'Item 4', value: 4 },
+    { name: 'Item 5', value: 5 },
+    { name: 'Item 6', value: 6 },
+    { name: 'Item 7', value: 7 },
+    { name: 'Item 8', value: 8 },
+];
 
 function App() {
     return (
@@ -51,6 +63,18 @@ function App() {
                 <Radio variant="sm" id="radio1" label="Radio" name="radio" />
                 <Radio variant="md" id="radio2" label="Radio" name="radio" />
                 <Radio variant="lg" id="radio3" label="Radio" />
+            </Row>
+
+            <Row>
+                <Dropdown items={items} variant="lg" />
+                <Dropdown
+                    placeholder="Country"
+                    items={[
+                        { name: 'Poland', value: 'poland' },
+                        { name: 'Germany', value: 'german' },
+                        { name: 'USA', value: 'us' },
+                    ]}
+                />
             </Row>
         </>
     );

@@ -27,6 +27,10 @@ const ResetStyle = styled.createGlobalStyle`
         display: block;
         max-width: 100%;
     }
+
+    ul {
+        list-style: none;
+    }
 `;
 
 export default ResetStyle;
