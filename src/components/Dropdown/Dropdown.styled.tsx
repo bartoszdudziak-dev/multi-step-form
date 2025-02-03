@@ -32,6 +32,9 @@ const ListItem = styled.li<{ $isActive: boolean }>`
 `;
 
 const List = styled.ul<{ $isOpen: boolean; $variant: Variant }>`
+    position: absolute;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,6 +44,7 @@ const List = styled.ul<{ $isOpen: boolean; $variant: Variant }>`
     transform: ${({ $isOpen }) => ($isOpen ? 'scaleY(1)' : 'scaleY(0)')};
     opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
     overflow-y: auto;
+    z-index: 999;
 
     transition:
         transform 0.2s ease-out,
@@ -55,7 +59,7 @@ const List = styled.ul<{ $isOpen: boolean; $variant: Variant }>`
         theme: {
             input,
             borderRadius,
-            color: { primary, secondary },
+            color: { primary, secondary, background },
         },
         $variant,
     }) => {
@@ -65,6 +69,7 @@ const List = styled.ul<{ $isOpen: boolean; $variant: Variant }>`
         } = input[$variant];
 
         return css`
+            background-color: ${background};
             border-bottom-right-radius: ${borderRadius[$variant]};
             border-bottom-left-radius: ${borderRadius[$variant]};
             font-size: ${fontSize};

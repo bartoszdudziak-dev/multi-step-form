@@ -6,6 +6,7 @@ import Input from './components/Input';
 import Label from './components/Label';
 import Radio from './components/Radio';
 import Row from './components/Row';
+import Stepper from './components/Stepper';
 
 const items = [
     { name: 'Item 1', value: 1 },
@@ -76,6 +77,9 @@ function App() {
                     ]}
                 />
             </Row>
+
+            <Stepper maxSteps={3} currentStep={3} />
+            <Stepper maxSteps={5} currentStep={5} />
         </>
     );
 }
