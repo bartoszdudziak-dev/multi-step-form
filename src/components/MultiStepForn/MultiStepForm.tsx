@@ -23,11 +23,13 @@ function MultiStepForm({ steps }: MultiStepFormProps) {
     };
 
     return (
-        <StyledMultiStepForm style={{ maxWidth: '60em', marginInline: 'auto' }}>
-            <Column style={{ gap: '4rem' }}>
+        <StyledMultiStepForm>
+            <Column style={{ gap: '2.5rem' }}>
                 <Heading center={true}>Multi Step Form</Heading>
                 <Stepper currentStep={step} maxSteps={steps.length} />
-                <div>{steps[step - 1]}</div>
+
+                {steps[step - 1]}
+
                 <ControlButtons
                     onBack={handleBack}
                     onNext={handleNext}

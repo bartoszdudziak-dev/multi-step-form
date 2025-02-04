@@ -19,4 +19,9 @@ const StyledLabel = styled.label<StyledLabelProps>`
     }}
 `;
 
-export { StyledLabel };
+const StyledCustomLabel = styled.span<StyledLabelProps>`
+    display: block;
+    ${StyledLabel}
+`;
+
+export { StyledLabel, StyledCustomLabel };

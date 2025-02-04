@@ -1,4 +1,9 @@
-import { ContactForm, FinalizationForm, PersonalForm, SkillsForm } from './components/FormSteps';
+import {
+    ContactForm,
+    FinalizationForm,
+    PersonalForm,
+    SkillsForm,
+} from './components/FormSteps/Steps';
 import MultiStepForm from './components/MultiStepForn';
 
 const steps = [<PersonalForm />, <ContactForm />, <SkillsForm />, <FinalizationForm />];

@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 
-const StyledMultiStepForm = styled.div`
-    padding: 3.5rem 5rem;
+const StyledMultiStepForm = styled.form`
+    padding: 2.5rem 5rem;
+    border-radius: 1rem;
+    max-width: 60em;
+    margin-inline: auto;
 
     ${({
         theme: {

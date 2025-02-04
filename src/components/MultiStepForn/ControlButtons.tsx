@@ -15,24 +15,26 @@ function ControlButtons({ onBack, onNext, currentStep, totalSteps }: ControlButt
                 justifyContent: 'space-between',
                 marginInline: 'auto',
                 width: '100%',
+                marginBlockStart: '1rem',
             }}
         >
             {currentStep > 1 && (
                 <Button
                     onClick={onBack}
                     style={{ marginInlineEnd: 'auto', maxWidth: '8rem', width: '100%' }}
+                    type="button"
                 >
                     Back
                 </Button>
             )}
-            {currentStep < totalSteps && (
-                <Button
-                    onClick={onNext}
-                    style={{ marginInlineStart: 'auto', maxWidth: '8rem', width: '100%' }}
-                >
-                    Next
-                </Button>
-            )}
+
+            <Button
+                onClick={onNext}
+                style={{ marginInlineStart: 'auto', maxWidth: '8rem', width: '100%' }}
+                type="button"
+            >
+                {currentStep === totalSteps ? 'Send' : 'Next'}
+            </Button>
         </Row>
     );
 }

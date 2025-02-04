@@ -6,4 +6,5 @@ export type HeadingProps = {
     children: ReactNode;
     as?: HeadingType;
     center?: boolean;
+    style?: React.CSSProperties;
 };

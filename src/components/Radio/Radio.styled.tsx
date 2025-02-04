@@ -74,7 +74,7 @@ const RadioContainer = styled.label<StyledRadioProps>`
         return css`
             color: ${outline};
             font-size: ${fontSize};
-            padding-inline-start: calc(${width} + ${gap});
+            padding-inline-start: calc(${width} + ${gap} * 3);
 
             &:hover {
                 color: ${text};

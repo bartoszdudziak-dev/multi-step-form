@@ -25,6 +25,7 @@ function Dropdown({ variant = 'md', items, placeholder = 'Dropdown', onChoice }:
                     alignItems: 'center',
                     gap: '1rem',
                 }}
+                type="button"
                 variant={variant}
                 onClick={() => setIsOpen((open) => !open)}
             >
