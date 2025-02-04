@@ -25,6 +25,11 @@ const GlobalStyles = styled.createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    textarea {
+        background-color: inherit;
+        border: none;
+    }
 `;
 
 export default GlobalStyles;

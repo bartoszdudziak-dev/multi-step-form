@@ -18,8 +18,8 @@ const StyledMultiStepForm = styled.form`
 
         return css`
             box-shadow:
-                inset -${distance} -${distance} ${blur} ${secondary},
-                inset ${distance} ${distance} ${blur} ${primary};
+                -${distance} -${distance} ${blur} ${secondary},
+                ${distance} ${distance} ${blur} ${primary};
         `;
     }}
 `;
