@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const StyledMultiStepForm = styled.div`
-    padding: 5rem;
+    padding: 3.5rem 5rem;
 
     ${({
         theme: {

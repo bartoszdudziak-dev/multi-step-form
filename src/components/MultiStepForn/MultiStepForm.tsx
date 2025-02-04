@@ -5,6 +5,8 @@ import ControlButtons from './ControlButtons';
 
 import { useState } from 'react';
 import { StyledMultiStepForm } from './MultiStepForm.styled';
+import Heading from '../Heading/Heading';
+import Column from '../Column';
 
 function MultiStepForm({ steps }: MultiStepFormProps) {
     const [step, setStep] = useState(1);
@@ -21,17 +23,18 @@ function MultiStepForm({ steps }: MultiStepFormProps) {
     };
 
     return (
-        <StyledMultiStepForm style={{ maxWidth: '50em', marginInline: 'auto' }}>
-            <Stepper currentStep={step} maxSteps={steps.length} />
-
-            <div>{steps[step - 1]}</div>
-
-            <ControlButtons
-                onBack={handleBack}
-                onNext={handleNext}
-                currentStep={step}
-                totalSteps={totalSteps}
-            />
+        <StyledMultiStepForm style={{ maxWidth: '60em', marginInline: 'auto' }}>
+            <Column style={{ gap: '4rem' }}>
+                <Heading center={true}>Multi Step Form</Heading>
+                <Stepper currentStep={step} maxSteps={steps.length} />
+                <div>{steps[step - 1]}</div>
+                <ControlButtons
+                    onBack={handleBack}
+                    onNext={handleNext}
+                    currentStep={step}
+                    totalSteps={totalSteps}
+                />
+            </Column>
         </StyledMultiStepForm>
     );
 }
