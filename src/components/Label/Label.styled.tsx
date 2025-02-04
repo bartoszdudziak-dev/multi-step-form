@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { StyledLabelProps } from './type';
 
-const StyledLabel = styled.label<StyledLabelProps>`
+const BaseLabelStyle = css<StyledLabelProps>`
     ${({
         theme: {
             color: { text },
@@ -19,9 +19,13 @@ const StyledLabel = styled.label<StyledLabelProps>`
     }}
 `;
 
+const StyledLabel = styled.label<StyledLabelProps>`
+    ${BaseLabelStyle}
+`;
+
 const StyledCustomLabel = styled.span<StyledLabelProps>`
     display: block;
-    ${StyledLabel}
+    ${BaseLabelStyle}
 `;
 
 export { StyledLabel, StyledCustomLabel };
