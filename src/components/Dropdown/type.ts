@@ -12,4 +12,5 @@ export type DropdownProps = {
     placeholder?: string;
     onChoice?: (value: string | number) => void;
     variant?: Variant;
+    style?: React.CSSProperties;
 };

@@ -33,7 +33,12 @@ function PersonalForm() {
 
                     <Column>
                         <CustomLabel>Region</CustomLabel>
-                        <Dropdown items={REGIONS} variant="sm" placeholder="Choose region" />
+                        <Dropdown
+                            items={REGIONS}
+                            variant="sm"
+                            placeholder="Choose region"
+                            style={{ width: '12rem', maxWidth: '100%' }}
+                        />
                     </Column>
                 </Row>
 

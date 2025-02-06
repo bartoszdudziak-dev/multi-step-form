@@ -3,7 +3,13 @@ import { DropdownItemProps, DropdownProps } from './type';
 import { List, ListItem, StyledDropdown } from './Dropdown.styled';
 import Button from '../Button';
 
-function Dropdown({ variant = 'md', items, placeholder = 'Dropdown', onChoice }: DropdownProps) {
+function Dropdown({
+    variant = 'md',
+    style,
+    items,
+    placeholder = 'Dropdown',
+    onChoice,
+}: DropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [active, setIsActive] = useState<DropdownItemProps | null>(null);
 
@@ -21,15 +27,14 @@ function Dropdown({ variant = 'md', items, placeholder = 'Dropdown', onChoice }:
             <Button
                 style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '1rem',
+                    ...style,
                 }}
                 type="button"
                 variant={variant}
                 onClick={() => setIsOpen((open) => !open)}
             >
-                <span>{active?.name || placeholder}</span>
+                <span style={{ marginInline: 'auto' }}>{active?.name || placeholder}</span>
                 {isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}
             </Button>
             <List $isOpen={isOpen} $variant={variant}>
