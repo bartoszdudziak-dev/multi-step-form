@@ -1,9 +1,13 @@
 import Column from '../../Column';
 import Input from '../../Input';
 import Label from '../../Label';
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import ControlButtons from '../../MultiStepForn/ControlButtons';
 import FormStep from '../Form';
 
 function ContactForm() {
+    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+
     return (
         <FormStep title="Contact">
             <Column style={{ gap: '2rem' }}>
@@ -20,6 +24,13 @@ function ContactForm() {
                     </div>
                 </Column>
             </Column>
+
+            <ControlButtons
+                onBack={handleBack}
+                onNext={handleNext}
+                currentStep={step}
+                totalSteps={totalSteps}
+            />
         </FormStep>
     );
 }

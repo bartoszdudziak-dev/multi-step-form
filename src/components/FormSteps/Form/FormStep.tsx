@@ -5,9 +5,7 @@ import { FormStepProps } from './type';
 function FormStep({ children, title }: FormStepProps) {
     return (
         <StyledFormStep>
-            <Heading as="h2" style={{ marginBlockEnd: '2.5rem' }}>
-                {title}
-            </Heading>
+            <Heading as="h2">{title}</Heading>
             {children}
         </StyledFormStep>
     );

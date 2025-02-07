@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledMultiStepForm = styled.form`
+const StyledMultiStepForm = styled.div`
     padding: 2.5rem 5rem;
     border-radius: 1rem;
     max-width: 60em;

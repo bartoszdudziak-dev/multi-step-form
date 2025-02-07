@@ -3,6 +3,8 @@ import Dropdown from '../../Dropdown';
 import Input from '../../Input';
 import Label from '../../Label';
 import CustomLabel from '../../Label/CustomLabel';
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import ControlButtons from '../../MultiStepForn/ControlButtons';
 import Radio from '../../Radio';
 import Row from '../../Row';
 import FormStep from '../Form';
@@ -15,7 +17,28 @@ const REGIONS = [
     { name: 'Oceania', value: 'oceania' },
 ];
 
+const GENDERS_OPTIONS = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+    { label: 'Other', value: 'other' },
+];
+
+const AGE_OPTIONS = [
+    { label: '> 18', value: 'under 18' },
+    { label: '18 - 24', value: '18-24' },
+    { label: '25 - 34', value: '25-34' },
+    { label: '35 - 44', value: '35-44' },
+    { label: '45+', value: 'over 45' },
+];
+
+const PERSONAL = [
+    { label: 'Age', name: 'age', options: GENDERS_OPTIONS },
+    { label: 'Gender', name: 'gender', options: AGE_OPTIONS },
+];
+
 function PersonalForm() {
+    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+
     return (
         <FormStep title="Personal">
             <Column style={{ gap: '2rem' }}>
@@ -42,26 +65,32 @@ function PersonalForm() {
                     </Column>
                 </Row>
 
-                <Column>
-                    <CustomLabel>Gender</CustomLabel>
-                    <Row style={{ gap: '2rem' }}>
-                        <Radio variant="sm" label="Male" value="male" name="gender" />
-                        <Radio variant="sm" label="Female" value="female" name="gender" />
-                        <Radio variant="sm" label="Other" value="other" name="gender" />
-                    </Row>
-                </Column>
-
-                <Column>
-                    <CustomLabel>Age</CustomLabel>
-                    <Row style={{ gap: '2rem' }}>
-                        <Radio variant="sm" name="age" label="> 18" value="under 18" />
-                        <Radio variant="sm" name="age" label="18 - 24" value="18-24" />
-                        <Radio variant="sm" name="age" label="25 - 34" value="25-34" />
-                        <Radio variant="sm" name="age" label="35 - 44" value="35-44" />
-                        <Radio variant="sm" name="age" label="45+" value="over 45" />
-                    </Row>
-                </Column>
+                {PERSONAL.map(({ label, options, name }) => {
+                    return (
+                        <Column key={name}>
+                            <CustomLabel>{label}</CustomLabel>
+                            <Row style={{ gap: '2rem' }}>
+                                {options.map(({ label, value }) => (
+                                    <Radio
+                                        variant="sm"
+                                        name={name}
+                                        key={value}
+                                        label={label}
+                                        value={value}
+                                    />
+                                ))}
+                            </Row>
+                        </Column>
+                    );
+                })}
             </Column>
+
+            <ControlButtons
+                onBack={handleBack}
+                onNext={handleNext}
+                currentStep={step}
+                totalSteps={totalSteps}
+            />
         </FormStep>
     );
 }

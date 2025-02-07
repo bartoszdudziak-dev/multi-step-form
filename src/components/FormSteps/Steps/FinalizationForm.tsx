@@ -1,6 +1,8 @@
 import Checkbox from '../../Checkbox';
 import Column from '../../Column';
 import Label from '../../Label';
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import ControlButtons from '../../MultiStepForn/ControlButtons';
 import Textarea from '../../Textarea';
 import FormStep from '../Form';
 
@@ -18,6 +20,8 @@ const AGREEMENTS = [
 ];
 
 function FinalizationForm() {
+    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+
     return (
         <FormStep title="Final">
             <Column style={{ gap: '2rem' }}>
@@ -34,6 +38,13 @@ function FinalizationForm() {
                     ))}
                 </Column>
             </Column>
+
+            <ControlButtons
+                onBack={handleBack}
+                onNext={handleNext}
+                currentStep={step}
+                totalSteps={totalSteps}
+            />
         </FormStep>
     );
 }

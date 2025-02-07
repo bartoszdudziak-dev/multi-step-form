@@ -1,6 +1,8 @@
 import Column from '../../Column';
 
 import CustomLabel from '../../Label/CustomLabel';
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import ControlButtons from '../../MultiStepForn/ControlButtons';
 import Radio from '../../Radio';
 import Row from '../../Row';
 import FormStep from '../Form';
@@ -34,6 +36,8 @@ const SKILLS = [
 ];
 
 function SkillsForm() {
+    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+
     return (
         <FormStep title="Skills">
             <Column style={{ gap: '2rem' }}>
@@ -58,6 +62,13 @@ function SkillsForm() {
                     );
                 })}
             </Column>
+
+            <ControlButtons
+                onBack={handleBack}
+                onNext={handleNext}
+                currentStep={step}
+                totalSteps={totalSteps}
+            />
         </FormStep>
     );
 }
