@@ -1,16 +1,20 @@
 import { Variant } from 'styled-components';
 
+
+export type DropdownValue = number | string;
+
 export type DropdownItemProps = {
     name: string;
-    value: string | number;
+    value: DropdownValue;
 };
 
 export type DropdownItemsProps = DropdownItemProps[];
 
 export type DropdownProps = {
-    items: DropdownItemsProps;
-    placeholder?: string;
-    onChoice?: (value: string | number) => void;
     variant?: Variant;
+    placeholder?: string;
+    items: DropdownItemsProps;
     style?: React.CSSProperties;
+    value: DropdownValue;
+    onChoice: (value: DropdownValue) => void;
 };

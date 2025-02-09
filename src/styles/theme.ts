@@ -9,7 +9,7 @@ const theme: DefaultTheme = {
         background: '#333333',
         outline: '#787878',
         text: '#e5e5e5',
-        accent: '#EE6611',
+        accent: '#aaaa1a',
     },
 
     borderRadius: {

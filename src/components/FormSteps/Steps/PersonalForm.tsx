@@ -9,23 +9,24 @@ import FormStep from '../Form';
 import Error from '../../Error';
 
 import { FormElements } from '../../MultiStepForn/type';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
 import { PERSONAL, REGIONS } from './formOptions';
 
 function PersonalForm() {
     const {
         handleUpdateForm,
-        formElements: { age, gender, firstName, lastName },
+        formElements: { age, gender, firstName, lastName, region },
     } = useMultiStepForm();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
+        control,
     } = useForm<Partial<FormElements>>({
         mode: 'onChange',
-        defaultValues: { age, gender, firstName, lastName },
+        defaultValues: { age, gender, firstName, lastName, region },
     });
 
     return (
@@ -55,12 +56,24 @@ function PersonalForm() {
 
                     <Column>
                         <CustomLabel>Region</CustomLabel>
-                        <Dropdown
-                            items={REGIONS}
-                            variant="sm"
-                            placeholder="Choose region"
-                            style={{ width: '12rem', maxWidth: '100%' }}
+                        <Controller
+                            control={control}
+                            name="region"
+                            rules={{
+                                required: { value: true, message: 'Select your region' },
+                            }}
+                            render={({ field }) => (
+                                <Dropdown
+                                    items={REGIONS}
+                                    variant="sm"
+                                    placeholder="Choose region"
+                                    style={{ width: '12rem', maxWidth: '100%' }}
+                                    onChoice={field.onChange}
+                                    value={field?.value || ''}
+                                />
+                            )}
                         />
+                        <Error>{errors?.region?.message}</Error>
                     </Column>
                 </Row>
 

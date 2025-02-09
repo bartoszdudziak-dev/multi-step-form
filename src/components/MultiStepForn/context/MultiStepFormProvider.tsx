@@ -5,6 +5,7 @@ import { useState } from 'react';
 const initialFormElements = {
     firstName: '',
     lastName: '',
+    region: '',
     email: '',
     phoneNumber: '',
     age: '',
@@ -17,8 +18,8 @@ const initialFormElements = {
         react: '',
     },
     message: '',
-    agrements: {
-        contact: true,
+    agreements: {
+        contact: false,
         data: false,
         policy: false,
     },
@@ -26,7 +27,7 @@ const initialFormElements = {
 
 export function MultiStepFormProvider({ children, steps }: MultiStepFormProviderType) {
     const [formElements, setFormElements] = useState<FormElements>(initialFormElements);
-    const [step, setStep] = useState(4);
+    const [step, setStep] = useState(1);
     const totalSteps = steps.length;
 
     const handleBack = () => {
@@ -44,6 +45,16 @@ export function MultiStepFormProvider({ children, steps }: MultiStepFormProvider
         handleNext();
     };
 
+    const handleRestartForm = () => {
+        setFormElements(initialFormElements);
+        setStep(1);
+    };
+
+    const handleFakePostData = (data: FormElements) => {
+        console.log(data);
+        handleRestartForm();
+    };
+
     return (
         <MultiStepFormContext.Provider
             value={{
@@ -54,6 +65,8 @@ export function MultiStepFormProvider({ children, steps }: MultiStepFormProvider
                 handleBack,
                 handleNext,
                 handleUpdateForm,
+                handleRestartForm,
+                handleFakePostData,
             }}
         >
             {children}

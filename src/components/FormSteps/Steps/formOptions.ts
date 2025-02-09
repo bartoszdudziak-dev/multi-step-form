@@ -29,8 +29,8 @@ const AGE_OPTIONS = [
 ];
 
 const PERSONAL = [
-    { label: 'Age', name: 'age', options: GENDERS_OPTIONS },
-    { label: 'Gender', name: 'gender', options: AGE_OPTIONS },
+    { label: 'Age', name: 'age', options: AGE_OPTIONS },
+    { label: 'Gender', name: 'gender', options: GENDERS_OPTIONS },
 ];
 
 const REGIONS = [

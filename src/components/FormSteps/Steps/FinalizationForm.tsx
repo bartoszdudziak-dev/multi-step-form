@@ -26,9 +26,8 @@ function FinalizationForm() {
     return (
         <FormStep
             title="Final"
-            onSubmit={handleSubmit((data) => {
-                handleUpdateForm({ message: data.message, agreements: { ...data } });
-                console.log(data);
+            onSubmit={handleSubmit(({ message, ...data }) => {
+                handleUpdateForm({ message, agreements: { ...data } });
             })}
         >
             <Column>

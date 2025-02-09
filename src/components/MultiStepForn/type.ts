@@ -13,6 +13,8 @@ export type MultiStepFormContextType = {
     handleNext: () => void;
     handleBack: () => void;
     handleUpdateForm: (form: Partial<FormElements>) => void;
+    handleRestartForm: () => void;
+    handleFakePostData: (data: FormElements) => void;
 } & Steps;
 
 export type SkillsType = {
@@ -36,6 +38,7 @@ export type FormElements = {
     phoneNumber: string;
     age: string;
     gender: string;
+    region: string;
     skills: SkillsType;
     message: string;
     agreements: AgreementsType;
