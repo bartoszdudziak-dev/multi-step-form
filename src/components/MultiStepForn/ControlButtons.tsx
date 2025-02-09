@@ -16,6 +16,7 @@ function ControlButtons({ onBack, onNext, currentStep, totalSteps }: ControlButt
                 marginInline: 'auto',
                 width: '100%',
                 marginBlockStart: '1rem',
+                alignItems: 'center',
             }}
         >
             {currentStep > 1 && (
