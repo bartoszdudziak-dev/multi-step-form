@@ -1,50 +1,69 @@
 import Checkbox from '../../Checkbox';
 import Column from '../../Column';
 import Label from '../../Label';
-import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
-import ControlButtons from '../../MultiStepForn/ControlButtons';
 import Textarea from '../../Textarea';
 import FormStep from '../Form';
-
-const AGREEMENTS = [
-    { id: 'policy', message: 'I confirm that I have reviewed and acknowledged the policy.' },
-    {
-        id: 'data',
-        message: 'I acknowledge that my data will be stored and retained as per policy.',
-    },
-    {
-        id: 'contact',
-        message:
-            'I agree to be contacted via email and phone regarding relevant updates and information.',
-    },
-];
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import { AGREEMENTS } from './formOptions';
+import { useForm } from 'react-hook-form';
+import { AgreementsType } from '../../MultiStepForn/type';
+import Error from '../../Error';
 
 function FinalizationForm() {
-    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+    const {
+        handleUpdateForm,
+        formElements: { agreements, message },
+    } = useMultiStepForm();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<AgreementsType & { message: string }>({
+        mode: 'onChange',
+        defaultValues: { message, ...agreements },
+    });
 
     return (
-        <FormStep title="Final">
-            <Column style={{ gap: '2rem' }}>
+        <FormStep
+            title="Final"
+            onSubmit={handleSubmit((data) => {
+                handleUpdateForm({ message: data.message, agreements: { ...data } });
+                console.log(data);
+            })}
+        >
+            <Column>
                 <Column>
                     <Label htmlFor="message" variant="lg">
                         Message
                     </Label>
-                    <Textarea id="message" style={{ maxWidth: '75%' }} />
+                    <Textarea
+                        id="message"
+                        style={{ maxWidth: '75%' }}
+                        {...register('message', {
+                            minLength: { value: 50, message: 'Minimum characteres in message: 50' },
+                        })}
+                    />
+                    <Error>{errors?.message?.message}</Error>
                 </Column>
 
                 <Column style={{ gap: '1.5rem' }}>
                     {AGREEMENTS.map(({ id, message }) => (
-                        <Checkbox key={id} label={message} id={id} variant="sm" />
+                        <Checkbox
+                            key={id}
+                            id={id}
+                            label={message}
+                            name={id as keyof AgreementsType}
+                            variant="sm"
+                            register={register}
+                            options={{ required: true }}
+                        />
                     ))}
+                    <Error>
+                        {('contact' in errors || 'data' in errors || 'policy' in errors) &&
+                            'All agreements are required'}
+                    </Error>
                 </Column>
             </Column>
-
-            <ControlButtons
-                onBack={handleBack}
-                onNext={handleNext}
-                currentStep={step}
-                totalSteps={totalSteps}
-            />
         </FormStep>
     );
 }

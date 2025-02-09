@@ -1,45 +1,35 @@
-import Column from '../../Column';
-
-import CustomLabel from '../../Label/CustomLabel';
-import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
-import ControlButtons from '../../MultiStepForn/ControlButtons';
-import Radio from '../../Radio';
-import Row from '../../Row';
 import FormStep from '../Form';
+import Column from '../../Column';
+import Row from '../../Row';
+import CustomLabel from '../../Label/CustomLabel';
+import Radio from '../../Radio';
 
-const createGradesArray = (quntity: number) => {
-    return Array.from({ length: quntity }).map((_, i) => ({
-        label: `${i + 1}`,
-        value: `${i + 1}`,
-    }));
-};
-
-const englishLevels = [
-    { label: 'A1', value: 'a1' },
-    { label: 'A2', value: 'a2' },
-    { label: 'B1', value: 'b1' },
-    { label: 'B2', value: 'b2' },
-    { label: 'C1', value: 'c1' },
-    { label: 'C2', value: 'c2' },
-];
-
-const SKILLS = [
-    {
-        label: 'HTML',
-        name: 'html',
-        grades: createGradesArray(5),
-    },
-    { label: 'CSS', name: 'css', grades: createGradesArray(5) },
-    { label: 'JavaScript', name: 'js', grades: createGradesArray(5) },
-    { label: 'React', name: 'react', grades: createGradesArray(5) },
-    { label: 'English', name: 'english', grades: englishLevels },
-];
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import { useForm } from 'react-hook-form';
+import { SKILLS } from './formOptions';
+import { SkillsType } from '../../MultiStepForn/type';
+import Error from '../../Error';
 
 function SkillsForm() {
-    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+    const {
+        handleUpdateForm,
+        formElements: { skills },
+    } = useMultiStepForm();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SkillsType>({
+        mode: 'onChange',
+        defaultValues: skills,
+    });
 
     return (
-        <FormStep title="Skills">
+        <FormStep
+            title="Skills"
+            onSubmit={handleSubmit((data) => handleUpdateForm({ skills: { ...data } }))}
+        >
             <Column style={{ gap: '2rem' }}>
                 {SKILLS.map(({ name, label, grades }) => {
                     return (
@@ -50,11 +40,14 @@ function SkillsForm() {
                             <Row style={{ gap: '2rem' }}>
                                 {grades.map(({ value, label: gradeLabel }) => (
                                     <Radio
+                                        id={name + '-' + value}
+                                        variant="sm"
                                         key={value}
+                                        name={name as keyof SkillsType}
                                         label={gradeLabel}
                                         value={value}
-                                        name={label}
-                                        variant="sm"
+                                        register={register}
+                                        options={{ required: true }}
                                     />
                                 ))}
                             </Row>
@@ -62,13 +55,9 @@ function SkillsForm() {
                     );
                 })}
             </Column>
-
-            <ControlButtons
-                onBack={handleBack}
-                onNext={handleNext}
-                currentStep={step}
-                totalSteps={totalSteps}
-            />
+            <Error>
+                {!!Object.keys(errors).length && 'Select one of the options for each category '}
+            </Error>
         </FormStep>
     );
 }

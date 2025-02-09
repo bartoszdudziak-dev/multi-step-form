@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { RadioProps, StyledRadioProps } from './type';
+import { FieldValues } from 'react-hook-form';
 
 const RadioCheckmark = styled.span<StyledRadioProps>`
     position: absolute;
@@ -106,11 +107,19 @@ const RadioContainer = styled.label<StyledRadioProps>`
     }}
 `;
 
-const StyledRadio = ({ id, label, variant = 'md', name, value }: RadioProps) => {
+const StyledRadio = <T extends FieldValues>({
+    id,
+    label,
+    variant = 'md',
+    name,
+    register,
+    options,
+    value,
+}: RadioProps<T>) => {
     return (
         <RadioContainer $variant={variant} htmlFor={id}>
             {label}
-            <RadioInput id={id} name={name} value={value} />
+            <RadioInput id={id} value={value} {...register(name, options)} />
             <RadioCheckmark $variant={variant} />
         </RadioContainer>
     );

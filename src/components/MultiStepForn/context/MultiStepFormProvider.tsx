@@ -1,12 +1,32 @@
 import { MultiStepFormContext } from './MultiStepFormContext';
-import { MultiStepFormProviderType } from '../type';
+import { FormElements, MultiStepFormProviderType } from '../type';
 import { useState } from 'react';
 
-export function MultiStepFormProvider({
-    children,
-    steps,
-}: MultiStepFormProviderType)  {
-    const [step, setStep] = useState(1);
+const initialFormElements = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    age: '',
+    gender: '',
+    skills: {
+        html: '',
+        css: '',
+        english: '',
+        javascript: '',
+        react: '',
+    },
+    message: '',
+    agrements: {
+        contact: true,
+        data: false,
+        policy: false,
+    },
+};
+
+export function MultiStepFormProvider({ children, steps }: MultiStepFormProviderType) {
+    const [formElements, setFormElements] = useState<FormElements>(initialFormElements);
+    const [step, setStep] = useState(4);
     const totalSteps = steps.length;
 
     const handleBack = () => {
@@ -19,9 +39,22 @@ export function MultiStepFormProvider({
         setStep((prev) => prev + 1);
     };
 
+    const handleUpdateForm = (form: Partial<FormElements>) => {
+        setFormElements((prevForm) => ({ ...prevForm, ...form }));
+        handleNext();
+    };
+
     return (
         <MultiStepFormContext.Provider
-            value={{ handleBack, handleNext, step, steps, totalSteps }}
+            value={{
+                step,
+                steps,
+                totalSteps,
+                formElements,
+                handleBack,
+                handleNext,
+                handleUpdateForm,
+            }}
         >
             {children}
         </MultiStepFormContext.Provider>

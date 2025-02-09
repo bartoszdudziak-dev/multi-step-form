@@ -3,54 +3,53 @@ import Dropdown from '../../Dropdown';
 import Input from '../../Input';
 import Label from '../../Label';
 import CustomLabel from '../../Label/CustomLabel';
-import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
-import ControlButtons from '../../MultiStepForn/ControlButtons';
 import Radio from '../../Radio';
 import Row from '../../Row';
 import FormStep from '../Form';
+import Error from '../../Error';
 
-const REGIONS = [
-    { name: 'Africa', value: 'africa' },
-    { name: 'America', value: 'america' },
-    { name: 'Asia', value: 'asia' },
-    { name: 'Europe', value: 'europe' },
-    { name: 'Oceania', value: 'oceania' },
-];
-
-const GENDERS_OPTIONS = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
-    { label: 'Other', value: 'other' },
-];
-
-const AGE_OPTIONS = [
-    { label: '> 18', value: 'under 18' },
-    { label: '18 - 24', value: '18-24' },
-    { label: '25 - 34', value: '25-34' },
-    { label: '35 - 44', value: '35-44' },
-    { label: '45+', value: 'over 45' },
-];
-
-const PERSONAL = [
-    { label: 'Age', name: 'age', options: GENDERS_OPTIONS },
-    { label: 'Gender', name: 'gender', options: AGE_OPTIONS },
-];
+import { FormElements } from '../../MultiStepForn/type';
+import { useForm } from 'react-hook-form';
+import { useMultiStepForm } from '../../MultiStepForn/context/useMultiStepForm';
+import { PERSONAL, REGIONS } from './formOptions';
 
 function PersonalForm() {
-    const { handleBack, handleNext, step, totalSteps } = useMultiStepForm();
+    const {
+        handleUpdateForm,
+        formElements: { age, gender, firstName, lastName },
+    } = useMultiStepForm();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Partial<FormElements>>({
+        mode: 'onChange',
+        defaultValues: { age, gender, firstName, lastName },
+    });
 
     return (
-        <FormStep title="Personal">
-            <Column style={{ gap: '2rem' }}>
+        <FormStep title="Personal" onSubmit={handleSubmit(handleUpdateForm)} noValidate={true}>
+            <Column>
                 <Row style={{ justifyContent: 'space-between' }}>
                     <Row>
                         <Column>
                             <Label htmlFor="firstName">First Name</Label>
-                            <Input id="firstName" name="firstName" />
+                            <Input
+                                id="firstName"
+                                autoComplete="given-name"
+                                {...register('firstName', { required: 'First name is required' })}
+                            />
+                            <Error>{errors.firstName && String(errors.firstName.message)}</Error>
                         </Column>
                         <Column>
                             <Label htmlFor="lastName">Last Name</Label>
-                            <Input id="lastName" name="lastName" />
+                            <Input
+                                id="lastName"
+                                autoComplete="family-name"
+                                {...register('lastName', { required: 'Last name is required' })}
+                            />
+                            <Error>{errors.lastName && String(errors.lastName.message)}</Error>
                         </Column>
                     </Row>
 
@@ -70,27 +69,29 @@ function PersonalForm() {
                         <Column key={name}>
                             <CustomLabel>{label}</CustomLabel>
                             <Row style={{ gap: '2rem' }}>
-                                {options.map(({ label, value }) => (
+                                {options.map(({ label: radioLabel, value }) => (
                                     <Radio
+                                        id={value}
                                         variant="sm"
-                                        name={name}
                                         key={value}
-                                        label={label}
+                                        name={name as keyof FormElements}
+                                        label={radioLabel}
                                         value={value}
+                                        register={register}
+                                        options={{
+                                            required: {
+                                                value: true,
+                                                message: `${label} is required`,
+                                            },
+                                        }}
                                     />
                                 ))}
                             </Row>
+                            <Error>{errors[name as keyof FormElements]?.message as string}</Error>
                         </Column>
                     );
                 })}
             </Column>
-
-            <ControlButtons
-                onBack={handleBack}
-                onNext={handleNext}
-                currentStep={step}
-                totalSteps={totalSteps}
-            />
         </FormStep>
     );
 }

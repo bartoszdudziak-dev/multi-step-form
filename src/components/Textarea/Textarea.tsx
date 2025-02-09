@@ -1,8 +1,9 @@
+import { forwardRef } from 'react';
 import { StyledTextarea } from './Textarea.styled';
 import { TextareaProps } from './type';
 
-function Textarea({ ...rest }: TextareaProps) {
-    return <StyledTextarea {...rest} />;
-}
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
+    return <StyledTextarea {...props} ref={ref} />;
+});
 
 export default Textarea;

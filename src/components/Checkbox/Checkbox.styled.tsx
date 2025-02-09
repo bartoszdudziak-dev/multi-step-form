@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { CheckboxProps, StyledCheckboxProps } from './type';
+import { FieldValues } from 'react-hook-form';
 
 const ChebkboxCheckmark = styled.span<StyledCheckboxProps>`
     position: absolute;
@@ -106,11 +107,18 @@ const CheckboxContainer = styled.label<StyledCheckboxProps>`
     }}
 `;
 
-const StyledCheckbox = ({ id, label, variant = 'md' }: CheckboxProps) => {
+const StyledCheckbox = <T extends FieldValues>({
+    id,
+    label,
+    variant = 'md',
+    options,
+    register,
+    name,
+}: CheckboxProps<T>) => {
     return (
         <CheckboxContainer $variant={variant} htmlFor={id}>
             {label}
-            <CheckboxInput id={id} />
+            <CheckboxInput id={id} {...register(name, options)} />
             <ChebkboxCheckmark $variant={variant} />
         </CheckboxContainer>
     );

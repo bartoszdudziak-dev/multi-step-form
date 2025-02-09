@@ -11,11 +11,9 @@ const steps = [<PersonalForm />, <ContactForm />, <SkillsForm />, <FinalizationF
 
 function App() {
     return (
-        <div style={{ paddingBlockStart: '5rem' }}>
-            <MultiStepFormProvider steps={steps}>
-                <MultiStepForm />
-            </MultiStepFormProvider>
-        </div>
+        <MultiStepFormProvider steps={steps}>
+            <MultiStepForm />
+        </MultiStepFormProvider>
     );
 }
 

@@ -3,7 +3,7 @@ import Row from '../Row';
 
 type ControlButtonsProps = {
     onBack: () => void;
-    onNext: () => void;
+    onNext?: () => void;
     currentStep: number;
     totalSteps: number;
 };
@@ -29,9 +29,11 @@ function ControlButtons({ onBack, onNext, currentStep, totalSteps }: ControlButt
             )}
 
             <Button
-                onClick={onNext}
+                onClick={() => {
+                    if (onNext && typeof onNext === 'function') onNext();
+                }}
                 style={{ marginInlineStart: 'auto', maxWidth: '8rem', width: '100%' }}
-                type="button"
+                type="submit"
             >
                 {currentStep === totalSteps ? 'Send' : 'Next'}
             </Button>

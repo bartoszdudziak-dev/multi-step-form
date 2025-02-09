@@ -7,4 +7,4 @@ export type InputProps = {
 
 export type StyledInputProps = {
     $variant: Variant;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
