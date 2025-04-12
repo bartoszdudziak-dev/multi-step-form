@@ -3,6 +3,12 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
     fontFamily: 'Monospace, Cursive, system-ui, Verdana, Arial, sans-serif',
 
+    breakpoints: {
+        sm: '480px',
+        md: '768px',
+        lg: '1024px',
+    },
+
     color: {
         primary: '#303030',
         secondary: '#454545',

@@ -7,13 +7,14 @@ const ProgressBar = styled.div`
     left: 50%;
     translate: -50% -50%;
     z-index: -1;
-    height: 1rem;
+    height: 0.5rem;
     width: 100%;
 
     ${({
         theme: {
             color: { primary, secondary },
             button,
+            breakpoints: { md },
         },
     }) => {
         const {
@@ -24,6 +25,10 @@ const ProgressBar = styled.div`
             box-shadow:
                 ${distance} ${distance} ${blur} ${secondary},
                 -${distance} -${distance} ${blur} ${primary};
+
+            @media (width >= ${md}) {
+                height: 1rem;
+            }
         `;
     }}
 `;
@@ -36,6 +41,7 @@ const StyledStep = styled.div<StyledStepProp>`
 
     ${({
         theme: {
+            breakpoints: { md },
             borderRadius,
             color: { primary, secondary, background, outline, text },
             button,
@@ -64,10 +70,17 @@ const StyledStep = styled.div<StyledStepProp>`
             color: ${outline};
             color: ${($isDone || $isActive) && `${text}`};
 
-            width: calc(2.5 * ${fontSize});
-            height: calc(2.5 * ${fontSize});
+            width: calc(1.5 * ${fontSize});
+            height: calc(1.5 * ${fontSize});
+            font-size: 0.75 * ${fontSize};
+
             border-radius: ${borderRadius['full']};
-            font-size: ${fontSize};
+
+            @media (width >= ${md}) {
+                width: calc(2.5 * ${fontSize});
+                height: calc(2.5 * ${fontSize});
+                font-size: ${fontSize};
+            }
         `;
     }}
 `;

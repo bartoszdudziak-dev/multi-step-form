@@ -4,6 +4,12 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         fontFamily: string;
 
+        breakpoints: {
+            sm: string;
+            md: string;
+            lg: string;
+        };
+
         color: {
             primary: string;
             secondary: string;
