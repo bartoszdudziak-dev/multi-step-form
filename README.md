@@ -3,17 +3,17 @@
 
 # Multi Step Form
 
-See the live version of [Multi Step Form](https://bartoszdudziak-dev.github.io/task-react-styling/).
+See the live version of [Multi Step Form](https://bartoszdudziak-dev.github.io/multi-step-form/).
 
 A project created for educational purposes during an individual frontend mentoring session. I managed to use several new technologies that allowed me to better understand React library.
 
 **Main features**:
-- Reusable components designed with neumorphism
-- Client-side validation
-- Real-time error handling
-- Smooth navigation between steps
-- Stepper progress indicator
-- Custom inputs and dropdown
+- 🔁 Reusable components designed with neumorphism
+- 🛡️ Client-side validation
+- 🚨 Real-time error handling
+- 🚀 Smooth navigation between steps
+- 📶 Stepper progress indicator
+- 🎨 Custom inputs and dropdown
 
 &nbsp;
  
